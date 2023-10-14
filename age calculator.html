@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGE CALCULATOR</title>
+    <style>
+        body {
+            background-color: rgb(17, 22, 22);
+            margin: auto;
+            text-align: center;
+            border-top: 4px solid black;
+            border-bottom: 4px solid black;
+            border-left: 4px solid black;
+            border-right: 4px solid black;
+            margin-top: 70px;
+            margin-bottom: 70px;
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+        
+        .container {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 20px;
+            font-size: x-large;
+            background-color: rgb(118, 247, 229);
+        }
+        
+        .heading {
+            font-size: xx-large;
+            font-weight: 300;
+            font-family: serif;
+            padding: 20px;
+        }
+        
+        .title {
+            width: 135px;
+            padding: 5px 20px;
+            margin-left: 20px;
+            display: inline-block;
+            float: none;
+        }
+        
+        input[type=text] {
+            width: 140px;
+            margin: auto;
+            border: 3px solid rgb(37, 95, 202);
+            padding: 12px;
+            border-radius: 16px;
+            font-size: 20px;
+        }
+        
+        input[type=button] {
+            width: 160px;
+            height: 30px;
+            margin-top: 40px;
+            border-radius: 4px;
+            background-color: rgb(0, 65, 117);
+            color: cornsilk;
+            text-align: center;
+            font-size: 15px;
+            margin-left: 56px;
+        }
+        
+        input[type=button]:hover {
+            cursor: pointer;
+            background: darkblue;
+            box-shadow: #000;
+        }
+        
+        #age {
+            font-family: sans-serif;
+            font-size: 30px;
+            font-weight: 200;
+            color: midnightblue;
+            padding: 12px;
+            display: block;
+            word-spacing: 3px;
+            line-height: 1.5;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">
+            <h4>AGE CALCULATOR</h4>
+            <hr>
+            <h5>Enter your date of birth</h5>
+        </div>
+        <form>
+            <div class="title">
+                <p>DATE</p>
+                <input type="text" name="date" placeholder="dd" id="date" minlength="1" maxlength="2" required>
+            </div>
+            <div class="title">
+                <p>MONTH</p>
+                <input type="text" name="month" placeholder="mm" id="month" minlength="1" maxlength="2" required>
+            </div>
+            <div class="title">
+                <p>YEAR</p>
+                <input type="text" name="year" placeholder="yyyy" id="year" minlength="4" maxlength="4" required>
+            </div>
+            <br>
+            <div>
+                <input type="button" name="submit" value="Submit" onclick="age()">
+            </div>
+        </form>
+        <div id="age">
+        </div>
+    </div>
+    <script>
+        function age() {
+            var d1 = document.getElementById('date').value;
+            var m1 = document.getElementById('month').value;
+            var y1 = document.getElementById('year').value;
+            var mydate = new Date();
+            var d2 = mydate.getDate();
+            var m2 = 1 + mydate.getMonth();
+            var y2 = mydate.getFullYear();
+            var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            if (d1 > d2) {
+                d2 = d2 + month[m2 - 1];
+                m2 = m2 - 1;
+            }
+            if (m1 > m2) {
+                m2 = m2 + 12;
+                y2 = y2 - 1;
+            }
+            var d = d2 - d1;
+            var m = m2 - m1;
+            var y = y2 - y1;
+            document.getElementById('age').innerHTML = 'Your age is ' + y + ' Years ' + m + ' Months ' + d + ' Days';
+        }
+    </script>
+</body>
+
+</html>
